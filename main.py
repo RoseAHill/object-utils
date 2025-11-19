@@ -1,12 +1,17 @@
-import json_settings
-import user_input
-from json_gen import generate_json
+import configparser
+config = configparser.ConfigParser()
+config_file = "config.ini"
 
-SETTINGS: dict = json_settings.parse()
-SETTINGS_LOADED: bool = SETTINGS["LOADED"]
+try:
+    config.read(config_file)
+except FileExistsError:
+    print(f"config.ini not found in working dir, using default config...")
+    config.read("defaults/default_config.ini")
+except Exception as e:
+    print(f"Error while loading config: {e}")
 
 def main():
-    generate_json(user_input, io_settings=SETTINGS["IO_DATA"])
+    print(f"Settings are{" " if len(config.sections()) > 0 else " not "}loaded...")
 
 if __name__ == "__main__":
     main()

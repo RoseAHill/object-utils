@@ -1,8 +1,8 @@
 import json
-import user_input
+import gen.user_input as user_input
 
 def generate_json(data, io_settings:dict = {"output_path": "output/"}) -> bool:
-    data_to_dump: dict = data.to_json
+    data_to_dump: dict = data.data
     json_file_name: str = io_settings["output_file"] if not io_settings["output_file"] else data.title
     output_dir: str = io_settings["output_path"]
 
