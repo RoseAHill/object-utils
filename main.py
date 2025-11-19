@@ -1,8 +1,8 @@
-import settings
+import json_settings
 import user_input
 from json_gen import generate_json
 
-SETTINGS: dict = settings.parse()
+SETTINGS: dict = json_settings.parse()
 SETTINGS_LOADED: bool = SETTINGS["LOADED"]
 
 def main():
