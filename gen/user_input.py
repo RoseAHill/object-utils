@@ -40,7 +40,7 @@ data: dict = {
 }
 # INPUT ARCHIVE:
 # (rename the "data" dict to archive the previously converted data)
-_settings: dict = {
+_config: dict = {
     "META": {
         "loaded": "yes",
         # The current iteration of the settings file

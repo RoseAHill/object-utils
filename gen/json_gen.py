@@ -1,10 +1,10 @@
 import json
-import gen.user_input as user_input
+from . import user_input
 
-def generate_json(data, io_settings:dict = {"output_path": "output/"}) -> bool:
+def generate(data = user_input, settings:dict = {"output_path": "gen/output/"}) -> bool:
     data_to_dump: dict = data.data
-    json_file_name: str = io_settings["output_file"] if not io_settings["output_file"] else data.title
-    output_dir: str = io_settings["output_path"]
+    json_file_name: str = data.title
+    output_dir: str = settings["output_path"]
 
     try:
         with open(f"{output_dir}{json_file_name}.json", "+w") as file:
@@ -16,7 +16,7 @@ def generate_json(data, io_settings:dict = {"output_path": "output/"}) -> bool:
     return True
 
 def main():
-    print(f"Conversion from Python dictionary to json file {"successful!" if generate_json(user_input) else "failed..."}")
+    print(f"Conversion from Python dictionary to json file {"successful!" if generate() else "failed..."}")
 
 if __name__ == "__main__":
     main()
