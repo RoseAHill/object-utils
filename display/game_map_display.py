@@ -1,12 +1,12 @@
 import json
 
-def _display_string(top_label, line, row_data) -> str:
-    display_string: str = f"{top_label}\n{line}\n"
+def _display_string(title, top_label, line, row_data) -> str:
+    display_string: str = f"{title}:\n{top_label}\n{line}\n"
     for row in row_data:
         display_string = f"{display_string}{row}\n{line}\n"
     return display_string
 
-def generate_map_display(map_data: list[list], settings: dict) -> str:
+def generate_map_display(map_data: list[list], settings, title: str="My Map") -> str:
     line_char: str = "-"
     border_char: str = "|"
     cell_padding_size: int = 2
@@ -16,8 +16,8 @@ def generate_map_display(map_data: list[list], settings: dict) -> str:
         try:
             line_char = settings["line_char"]
             border_char = settings["border_char"]
-            cell_padding_size = settings["cell_padding"]
-            max_cell_chars = settings["max_cell_chars"]
+            cell_padding_size = int(settings["cell_padding"])
+            max_cell_chars = int(settings["max_cell_chars"])
             abbreviation = settings["abbreviation"]
         except Exception as e:
             print(f"Invalid settings {e}")
@@ -64,7 +64,7 @@ def generate_map_display(map_data: list[list], settings: dict) -> str:
         # appends the current row as a list item onto the list of rows
         rows.append(current_row)        
     
-    return _display_string(top_label, line, rows)
+    return _display_string(title, top_label, line, rows)
 
 def main():
     map_data: list[list] = [[]]
