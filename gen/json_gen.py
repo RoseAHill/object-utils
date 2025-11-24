@@ -1,13 +1,18 @@
-import json
-from . import user_input
+import json, os
 
-def generate(data = user_input, settings:dict = {"output_path": "gen/output/"}) -> bool:
-    data_to_dump: dict = data.data
-    json_file_name: str = data.title
+if __name__ == "__main__":
+    import user_input
+else:
+    from . import user_input
+
+def generate(data: dict = user_input.data, title: str = user_input.title, settings: dict = {"output_path": "gen/output/"}) -> bool:
+    data_to_dump: dict = data
+    json_file_name: str = title
     output_dir: str = settings["output_path"]
-
+    if not os.path.exists(output_dir):
+        os.mkdir(output_dir)
     try:
-        with open(f"{output_dir}{json_file_name}.json", "+w") as file:
+        with open(f"{output_dir}{json_file_name}.json", "w+") as file:
             json.dump(data_to_dump, file, indent=4)
             file.close
     except Exception as e:
