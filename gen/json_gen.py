@@ -1,5 +1,9 @@
 import json, os
-import user_input
+
+if __name__ == "__main__":
+    import user_input
+else:
+    from . import user_input
 
 def generate(data: dict = user_input.data, title: str = user_input.title, settings: dict = {"output_path": "gen/output/"}) -> bool:
     data_to_dump: dict = data

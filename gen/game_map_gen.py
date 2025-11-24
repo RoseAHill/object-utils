@@ -1,6 +1,11 @@
-from json_gen import generate
+if __name__ == "__main__":
+    from json_gen import generate
+else:
+    from .json_gen import generate
 
-def generate_map_data(settings: dict = {}, x: int = 8, y: int = 6, default_cell: str = "Forest") -> list:
+default_cell_label: str = "Mountain"
+
+def generate_map_data(settings: dict = {}, x: int = 8, y: int = 6, default_cell: str = default_cell_label) -> list:
     width: int = x
     height: int = y
     cell: str = default_cell
