@@ -1,16 +1,7 @@
+import parse
 from gen import my_config, my_json
-import configparser
 
-config = configparser.ConfigParser()
-config_file = "config.ini" 
-
-try:
-    config.read(config_file)
-except FileExistsError:
-    print(f"config.ini not found in working dir, using default config...")
-    config.read("defaults/default_config.ini")
-except Exception as e:
-    print(f"Error while loading config: {e}")
+config = parse.config("config.ini")
 
 def run_if_yes(callback, settings, prompt) -> str:
     user_answer = input(prompt)
